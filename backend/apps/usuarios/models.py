@@ -15,7 +15,7 @@ class Usuario (models.Model):
         verbose_name='Apellido'
     )
     
-    contraseña = models.CharField(
+    contrasenia = models.CharField(
         max_length=255,
         verbose_name='Contraseña'
     )
