@@ -5,7 +5,8 @@ from django.urls import path
 from apps.usuarios.api.views import (
     ListaUsuariosApiView,
     CrearUsuarioApiView,
-    DetallesUsuarioApiView
+    DetallesUsuarioApiView,
+    ValidarUsuarioApiView
 )
 
 
@@ -13,6 +14,6 @@ from apps.usuarios.api.views import (
 urlpatterns = [
     path('usuarios/', ListaUsuariosApiView.as_view(), name='Lista_usuarios'),
     path('crear-usuario/', CrearUsuarioApiView.as_view(), name='crear_usuario'),
-    path('detalles-usuario/<int:pk>/', DetallesUsuarioApiView.as_view(), name='detalles_usuario')
-    
+    path('detalles-usuario/<int:pk>/', DetallesUsuarioApiView.as_view(), name='detalles_usuario'),
+    path('login/', ValidarUsuarioApiView.as_view(), name='login')
 ]

@@ -22,8 +22,6 @@ class ListaUsuariosApiView(APIView):
         """Lista todos los usuarios
         """
 
-        # print(request)
-
         usuarios = Usuario.objects.all()
 
         lista_usuarios = UsuariosSerializer(usuarios, many=True)
@@ -39,7 +37,6 @@ class ListaUsuariosApiView(APIView):
 class CrearUsuarioApiView(APIView):
     """Vista para crear un nuevo usuario
     """
-
 
     def post(self, request):
         """Crear un nuevo usuario
@@ -65,6 +62,43 @@ class CrearUsuarioApiView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
+
+
+# login
+class ValidarUsuarioApiView(APIView):
+    
+    def get(self, request):
+        
+        # print("-----DATA---")
+        # print(request.data['user_name'])
+        # print(request.data['contrasenia'])
+        
+        user_name = request.data['user_name']
+        contrasenia = request.data['contrasenia']
+
+        try:
+            
+            usuario = Usuario.objects.filter(user_name=user_name, contrasenia=contrasenia).get()
+        except:
+            data = {
+                'mensaje': 'usuario o contraseña incorrecto'
+            }
+            
+            return Response (
+                data=data,
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        
+        # print("USUARIO")
+        # print(usuario)
+        
+        usuario_serializer = UsuariosSerializer(usuario)
+        
+        return Response (
+            data=usuario_serializer.data,
+            status=status.HTTP_200_OK
+        )
 
 
 class DetallesUsuarioApiView(APIView):
