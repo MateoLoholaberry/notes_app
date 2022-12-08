@@ -15,6 +15,12 @@ class Usuario (models.Model):
         verbose_name='Apellido'
     )
     
+    user_name = models.CharField(
+        max_length=40,
+        unique = True,
+        verbose_name='Nombre de usuario'
+    )
+
     contrasenia = models.CharField(
         max_length=255,
         verbose_name='Contraseña'
