@@ -66,39 +66,39 @@ class CrearUsuarioApiView(APIView):
 
 # login
 class ValidarUsuarioApiView(APIView):
-    
+
     def get(self, request):
-        
+
         # print("-----DATA---")
         # print(request.data['user_name'])
         # print(request.data['contrasenia'])
-        
+
         user_name = request.data['user_name']
         contrasenia = request.data['contrasenia']
 
         try:
-            
             usuario = Usuario.objects.filter(user_name=user_name, contrasenia=contrasenia).get()
         except:
             data = {
                 'mensaje': 'usuario o contraseña incorrecto'
             }
-            
+
             return Response (
                 data=data,
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        
+
         # print("USUARIO")
         # print(usuario)
-        
+
         usuario_serializer = UsuariosSerializer(usuario)
-        
+
         return Response (
             data=usuario_serializer.data,
             status=status.HTTP_200_OK
         )
+
 
 
 class DetallesUsuarioApiView(APIView):
@@ -115,7 +115,7 @@ class DetallesUsuarioApiView(APIView):
 
         except:
             data = {
-                'menaje':'El el usuario que se pasó por parametro no existe o ha sido eliminado'
+                'menaje':'Usuario no encontrado'
             }
 
             return Response(
@@ -133,13 +133,15 @@ class DetallesUsuarioApiView(APIView):
 
 
     def put(self, request, pk):
+        """Modifica un usuario específico
+        """
 
         try:
             usuario = Usuario.objects.get(pk=pk)
         except:
 
             data = {
-                'menaje':'El el usuario que se pasó por parametro no existe o ha sido eliminado'
+                'menaje':'Usuario no encontrado'
             }
 
             return Response(
@@ -166,29 +168,29 @@ class DetallesUsuarioApiView(APIView):
             data=usuario_serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
-    
-    
+
+
     def delete(self, request, pk):
-        
+
         try:
             usuario = Usuario.objects.get(pk=pk)
         except:
 
             data = {
-                'menaje':'El el usuario que se pasó por parametro no existe o ha sido eliminado'
+                'menaje':'Usuario no encontrado'
             }
 
             return Response(
                 data=data,
                 status=status.HTTP_400_BAD_REQUEST
             )
-        
+
         usuario.delete()
-        
+
         data = {
             'mensaje':'El usuario ha sido eliminado correctamente'
         }
-        
+
         return Response(
             data=data,
             status=status.HTTP_200_OK

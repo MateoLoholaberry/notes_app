@@ -70,7 +70,7 @@ class VerNotasUsuarioApiView(APIView):
             data = {
                 'mensaje': 'No hay notas registradas en este usuario'
             }
-            
+
             return Response(
                 data=data,
                 status=status.HTTP_200_OK
@@ -85,3 +85,90 @@ class VerNotasUsuarioApiView(APIView):
             status=status.HTTP_200_OK
         )
 
+
+
+class detallesNotaApiView(APIView):
+
+    def get(self, request, pk):
+
+        try:
+            nota = Nota.objects.get(pk=pk)
+        except:
+
+            data = {
+                'mensaje':'Nota no encontrada'
+            }
+
+            return Response(
+                data=data,
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        nota_serializer = NotaSerializer(nota)
+
+        return Response(
+            data=nota_serializer.data,
+            status=status.HTTP_200_OK
+        )
+
+
+    def put(self, request, pk):
+
+        try:
+            nota = Nota.objects.get(pk=pk)
+        except:
+
+            data = {
+                'mensaje':'Nota no encontrada'
+            }
+
+            return Response(
+                data=data,
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        nota_serializer = NotaSerializer(nota, data=request.data)
+
+        if nota_serializer.is_valid():
+
+            nota_serializer.save()
+
+            data = {
+                'mensaje':'La nota se modificó correctamente'
+            }
+
+            return Response(
+                data=data,
+                status=status.HTTP_201_CREATED
+            )
+
+        return Response(
+            data=nota_serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+
+    def delete(self, request, pk):
+        try:
+            nota = Nota.objects.get(pk=pk)
+        except:
+
+            data = {
+                'mensaje':'Nota no encontrada'
+            }
+
+            return Response(
+                data=data,
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        nota.delete()
+
+        data = {
+            'mensaje': 'Nota eliminada correctamente'
+        }
+
+        return Response(
+            data=data,
+            status=status.HTTP_200_OK
+        )
