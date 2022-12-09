@@ -6,12 +6,11 @@ from django.utils import timezone
 class Nota(models.Model):
 
     titulo = models.CharField(
-        max_length=30,
+        max_length=160,
         verbose_name = 'Título'
     )
 
-    contenido = models.CharField(
-        max_length=255,
+    contenido = models.TextField(
         verbose_name= 'Contenido'
     )
 

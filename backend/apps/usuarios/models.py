@@ -14,11 +14,11 @@ class Usuario (models.Model):
         max_length=40,
         verbose_name='Apellido'
     )
-    
+
     user_name = models.CharField(
         max_length=40,
         unique = True,
-        verbose_name='Nombre de usuario'
+        verbose_name='User name'
     )
 
     contrasenia = models.CharField(
