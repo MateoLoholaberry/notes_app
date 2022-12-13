@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `notesapp`
 --
+CREATE DATABASE notesapp;
+USE notesapp;
 
 -- --------------------------------------------------------
 
