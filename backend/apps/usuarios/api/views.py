@@ -67,8 +67,12 @@ class CrearUsuarioApiView(APIView):
 
 # login
 class ValidarUsuarioApiView(APIView):
+    """Vista para validar el login de un usuario
+    """
 
     def get(self, request, user_name, contrasenia):
+        """Obtiene el usuario si el user_name y la contrasenia son correctas
+        """
 
         # print("-----DATA---")
         # print(request.data['user_name'])
@@ -176,6 +180,8 @@ class DetallesUsuarioApiView(APIView):
 
 
     def delete(self, request, pk):
+        """Elimina un usuario espefico
+        """
 
         try:
             usuario = Usuario.objects.get(pk=pk)

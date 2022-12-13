@@ -1,3 +1,4 @@
+# Django imports
 from django.shortcuts import render
 
 # Rest Imports
@@ -17,8 +18,12 @@ from apps.notas.api.serializers import NotaSerializer
 # Create your views here.
 
 class CrearNotaApiView(APIView):
+    """Vista para crear un nota
+    """
 
     def post(self, request):
+        """Crea un nuevo registro
+        """
 
         nota_serializer = NotaSerializer(data=request.data)
 
@@ -41,8 +46,12 @@ class CrearNotaApiView(APIView):
 
 
 class VerNotasUsuarioApiView(APIView):
+    """Vista para ver todas las notas de un usuario
+    """
 
     def get(self, request, id_usuario):
+        """Obtiene todos los registros de un usuario especifico
+        """
 
         notas = Nota.objects.filter(usuario = id_usuario).all()
 
@@ -88,8 +97,12 @@ class VerNotasUsuarioApiView(APIView):
 
 
 class detallesNotaApiView(APIView):
+    """Vista para obtener modificar y eliminar una nota
+    """
 
     def get(self, request, pk):
+        """Obtiene un registro espeficio
+        """
 
         try:
             nota = Nota.objects.get(pk=pk)
@@ -113,6 +126,8 @@ class detallesNotaApiView(APIView):
 
 
     def put(self, request, pk):
+        """Modifica un registro espeficio
+        """
 
         try:
             nota = Nota.objects.get(pk=pk)
@@ -149,6 +164,9 @@ class detallesNotaApiView(APIView):
 
 
     def delete(self, request, pk):
+        """Elimina un registro espeficio
+        """
+
         try:
             nota = Nota.objects.get(pk=pk)
         except:

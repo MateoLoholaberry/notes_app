@@ -4,7 +4,10 @@ from django.utils import timezone
 
 # Create your models here.
 class Nota(models.Model):
+    """Modelo de un nota
+    """
 
+    #Atributos
     titulo = models.CharField(
         max_length=160,
         verbose_name = 'Título'
