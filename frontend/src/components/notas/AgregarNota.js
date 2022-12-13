@@ -76,7 +76,7 @@ const AgregarNota = () => {
         <div>
             <NavbarLogin usuario={nota.usuario} />
 
-            <form onSubmit={handledSubmit}>
+            <form onSubmit={handledSubmit} autoComplete="off">
                 <div className="mb-3 mt-3">
                     <label htmlFor="titulo" className="form-label">
                         Titulo

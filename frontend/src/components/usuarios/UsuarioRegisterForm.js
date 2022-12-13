@@ -90,7 +90,7 @@ const UsuarioRegisterForm = () => {
             {params.id ? <NavbarLogin usuario={params.id} /> : <Navbar />}
 
             {/* Formulario */}
-            <form onSubmit={handledSubmit}>
+            <form onSubmit={handledSubmit} autoComplete="off" >
                 <div className="mb-3 mt-3">
                     <label htmlFor="nombre" className="form-label">
                         Nombre

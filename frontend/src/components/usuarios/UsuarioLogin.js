@@ -44,7 +44,7 @@ const UsuarioLogin = () => {
     return (
         <div>
             <Navbar />
-            <form onSubmit={handledSubmit}>
+            <form onSubmit={handledSubmit} autoComplete="off">
                 <div className="mb-3">
                     <label htmlFor="user_name" className="form-label">
                         User Name
