@@ -1,9 +1,14 @@
+// React imports
 import { useState } from "react";
+
+// react-router-dom imports
 import { useNavigate } from "react-router-dom";
 
+// Components imports
 import { validarUsuario } from "./UsuarioServer";
 import Navbar from "../navbar/Navbar";
 
+// Componente que muestra un formulario de login y verifica si el usuario ingresó correctamente los datos o no
 const UsuarioLogin = () => {
     const history = useNavigate();
 
@@ -18,6 +23,7 @@ const UsuarioLogin = () => {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
     };
 
+    // Verifica que los datos ingresados sean correctos, y si los son, lo redirige a la vista de notas
     const handledSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,12 +34,11 @@ const UsuarioLogin = () => {
             if (data.id) {
                 history(`/notas/${data.id}/`);
             } else {
-                alert('Acesso denegado');
+                alert("Acesso denegado");
             }
         } catch (error) {
             console.log(error);
         }
-
     };
 
     return (

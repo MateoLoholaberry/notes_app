@@ -1,12 +1,15 @@
+// React imports
 import React, { useEffect, useState } from "react";
 
-import NotasItem from "./NotasItem";
-import * as NotasServer from "./NotasServer";
-
+// react-router-dom imports
 import { useParams } from "react-router-dom";
 
+// Component imports
+import NotasItem from "./NotasItem";
+import * as NotasServer from "./NotasServer";
 import NavbarLogin from "../navbar/Navbar_login";
 
+// Lista todas las notas de un usuario
 const NotasList = () => {
     const [notas, setNotas] = useState([]);
 
@@ -32,19 +35,15 @@ const NotasList = () => {
         <div>
             <NavbarLogin usuario={params.usuario} />
             <div className="row m-4">
-                {
-                    notas.length > 0 ? (
-                        notas.map((nota) => (
-                            <NotasItem
-                                key={nota.id}
-                                nota={nota}
-                                notasList={listNotas}
-                            />
-                        ))
-                    ) : (
-                        console.log("no hay notas")
-                    )
-                }
+                {notas.length > 0
+                    ? notas.map((nota) => (
+                          <NotasItem
+                              key={nota.id}
+                              nota={nota}
+                              notasList={listNotas}
+                          />
+                      ))
+                    : console.log("no hay notas")}
             </div>
         </div>
     );

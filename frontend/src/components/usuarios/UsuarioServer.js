@@ -1,8 +1,10 @@
+// Conexiones con las APIs de usuarios
+
 const LISTA_USUARIOS_URL = "http://127.0.0.1:8000/usuarios/lista-usuarios/";
 
 const CREAR_USUARIO_URL = "http://127.0.0.1:8000/usuarios/crear-usuario/";
 
-let VALIDAR_USUARIO_URL = "http://127.0.0.1:8000/usuarios/login/";
+const VALIDAR_USUARIO_URL = "http://127.0.0.1:8000/usuarios/login/";
 
 const DETALLES_USUARIO_URL = "http://127.0.0.1:8000/usuarios/detalles-usuario/";
 

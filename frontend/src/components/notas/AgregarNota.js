@@ -1,10 +1,14 @@
+// React imports
 import { useEffect, useState } from "react";
 
+// react-router-dom imports
 import { useNavigate, useParams } from "react-router-dom";
 
+// component imports
 import * as NotasServer from "./NotasServer";
 import NavbarLogin from "../navbar/Navbar_login";
 
+// Componente para agregar una nota nueva o editar una existente
 const AgregarNota = () => {
     const history = useNavigate();
     const params = useParams();
@@ -30,6 +34,7 @@ const AgregarNota = () => {
         try {
             let res;
 
+            // Verifica si es una nota nueva o una existente
             if (!params.id) {
                 res = await NotasServer.AgregarNota(nota);
                 // console.log(nota)
@@ -42,12 +47,12 @@ const AgregarNota = () => {
                 await NotasServer.ActualizarNota(params.id, nota);
             }
             history(`/notas/${nota.usuario}`);
-
         } catch (error) {
             console.log(error);
         }
     };
 
+    // Obtiene la nota existente y la carga en nota con setNota
     const getNota = async (notaId) => {
         try {
             const res = await NotasServer.getNota(notaId);

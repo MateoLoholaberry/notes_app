@@ -1,12 +1,16 @@
+// React imports
 import { useEffect, useState } from "react";
-// import { registrarUsuario } from "./UsuarioServer";
-import * as UsuarioServer from "./UsuarioServer";
 
+// react-router-dom imports
 import { useNavigate, useParams } from "react-router-dom";
 
+// Component imports
+import * as UsuarioServer from "./UsuarioServer";
 import Navbar from "../navbar/Navbar";
 import NavbarLogin from "../navbar/Navbar_login";
 
+
+// Componente que crea un nuevo usuario, modifica uno existente o lo elimina
 const UsuarioRegisterForm = () => {
     const history = useNavigate();
 
@@ -33,6 +37,7 @@ const UsuarioRegisterForm = () => {
         // console.log(usuario);
         try {
             let res;
+            // Verifica si debe crear un nuevo usuario o modificar uno existente
             if (!params.id) {
                 res = await UsuarioServer.registrarUsuario(usuario);
 
@@ -51,13 +56,15 @@ const UsuarioRegisterForm = () => {
         }
     };
 
-
+    // Handled que elimina un usuario cuando se aprieta en el boton eliminar usuario
     const handledDelete = async (e) => {
         e.preventDefault();
+
         await UsuarioServer.EliminarUsuario(params.id);
         history("/");
-    }
+    };
 
+    // Obtiene un usuario existente y lo carga en usuario con setUsuario
     const getUsuario = async (usuarioId) => {
         try {
             const res = await UsuarioServer.getUsuario(usuarioId);
@@ -79,8 +86,10 @@ const UsuarioRegisterForm = () => {
 
     return (
         <div>
+            {/* Verifica cual Navbar se debe cargar */}
             {params.id ? <NavbarLogin usuario={params.id} /> : <Navbar />}
 
+            {/* Formulario */}
             <form onSubmit={handledSubmit}>
                 <div className="mb-3 mt-3">
                     <label htmlFor="nombre" className="form-label">
@@ -144,6 +153,7 @@ const UsuarioRegisterForm = () => {
                 </div>
 
                 <div className="col-12">
+                    {/* Verifica que botones debe cargar */}
                     {params.id ? (
                         <div>
                             <button type="submit" className="btn btn-primary">

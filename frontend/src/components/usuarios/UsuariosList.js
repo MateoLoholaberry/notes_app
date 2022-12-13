@@ -1,11 +1,12 @@
+// React imports
 import React, { useEffect, useState } from "react";
 
 // Component imports
 import UsuarioItem from "./UsuarioItem";
 import Navbar from "../navbar/Navbar";
-
 import * as UsuarioServer from "./UsuarioServer";
 
+// Lista todos los usuarios registrados
 const UsuarioList = () => {
     const [usuarios, setUsuarios] = useState([]);
 

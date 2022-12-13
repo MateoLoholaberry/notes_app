@@ -1,5 +1,8 @@
+// react-router-dom imports
 import { Link } from "react-router-dom";
 
+
+// Navbar cuando el usuario esta sin "loguear";
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

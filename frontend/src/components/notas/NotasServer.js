@@ -1,3 +1,5 @@
+// Conexiones con las APIs de notas
+
 const NOTAS_LIST_URL = "http://127.0.0.1:8000/notas/ver-notas/";
 
 const AGREGAR_NOTA_URL = "http://127.0.0.1:8000/notas/crear-nota/";
