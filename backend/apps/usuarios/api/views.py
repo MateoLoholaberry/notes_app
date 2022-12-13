@@ -49,7 +49,8 @@ class CrearUsuarioApiView(APIView):
             serializer.save()
 
             data = {
-                'mensaje': 'El usuario se creó correctamente'
+                'mensaje': 'El usuario se creó correctamente',
+                'status':'Ok'
             }
 
             return Response(
@@ -67,20 +68,21 @@ class CrearUsuarioApiView(APIView):
 # login
 class ValidarUsuarioApiView(APIView):
 
-    def get(self, request):
+    def get(self, request, user_name, contrasenia):
 
         # print("-----DATA---")
         # print(request.data['user_name'])
         # print(request.data['contrasenia'])
 
-        user_name = request.data['user_name']
-        contrasenia = request.data['contrasenia']
+        # user_name = request.data['user_name']
+        # contrasenia = request.data['contrasenia']
 
         try:
             usuario = Usuario.objects.filter(user_name=user_name, contrasenia=contrasenia).get()
         except:
             data = {
-                'mensaje': 'usuario o contraseña incorrecto'
+                'mensaje': 'usuario o contraseña incorrecto',
+                'status':''
             }
 
             return Response (
@@ -115,7 +117,8 @@ class DetallesUsuarioApiView(APIView):
 
         except:
             data = {
-                'menaje':'Usuario no encontrado'
+                'menaje':'Usuario no encontrado',
+                'status':''
             }
 
             return Response(
@@ -141,7 +144,8 @@ class DetallesUsuarioApiView(APIView):
         except:
 
             data = {
-                'menaje':'Usuario no encontrado'
+                'menaje':'Usuario no encontrado',
+                'status':''
             }
 
             return Response(
@@ -156,7 +160,8 @@ class DetallesUsuarioApiView(APIView):
             usuario_serializer.save()
 
             data = {
-                'mensaje': 'El usuario se modificó correctamente'
+                'mensaje': 'El usuario se modificó correctamente',
+                'status':'Ok'
             }
 
             return Response(
@@ -177,7 +182,8 @@ class DetallesUsuarioApiView(APIView):
         except:
 
             data = {
-                'menaje':'Usuario no encontrado'
+                'menaje':'Usuario no encontrado',
+                'status':''
             }
 
             return Response(
@@ -188,7 +194,8 @@ class DetallesUsuarioApiView(APIView):
         usuario.delete()
 
         data = {
-            'mensaje':'El usuario ha sido eliminado correctamente'
+            'mensaje':'El usuario ha sido eliminado correctamente',
+            'status':'Ok'
         }
 
         return Response(

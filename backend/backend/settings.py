@@ -46,6 +46,8 @@ LOCAL_APPS = [
 
 THIRD_APPS = [
     'rest_framework',
+    # Cors
+    'corsheaders',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -59,7 +61,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Cors
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+# Cors
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:3000",
+)
+
 
 ROOT_URLCONF = 'backend.urls'
 
